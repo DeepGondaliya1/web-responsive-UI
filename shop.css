@@ -1,0 +1,25 @@
+.nav-main {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-size: 16px;
+  }
+
+.nav-home{
+    text-decoration: none;
+    color: #6c757d;
+}
+
+.slider-png{
+    position: relative;
+    top: 3px;
+}
+
+.shop-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+.shop-container-left{
+  width: 100%;
+  border-radius: 0.75rem;
+}  
