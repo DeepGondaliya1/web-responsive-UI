@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Management System</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+      }
+      button {
+        padding: 8px 15px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin: 5px;
+      }
+      .product-card {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+      }
+      .product-image {
+        max-width: 200px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Product Management System</h1>
+
+    <!-- Add Product Form -->
+    <div id="addProductForm">
+      <h2>Add New Product</h2>
+      <div class="form-group">
+        <label for="productName">Name:</label>
+        <input type="text" id="productName" required />
+      </div>
+      <div class="form-group">
+        <label for="productImage">Image URL:</label>
+        <input type="url" id="productImage" required />
+      </div>
+      <div class="form-group">
+        <label for="productPrice">Price:</label>
+        <input type="number" id="productPrice" required />
+      </div>
+      <div class="form-group">
+        <label for="productDescription">Description:</label>
+        <textarea id="productDescription" required></textarea>
+      </div>
+      <button onclick="addProduct()">Add Product</button>
+    </div>
+
+    <!-- Search Products -->
+    <div>
+      <h2>Search Products</h2>
+      <input type="text" id="searchInput" placeholder="Search by name..." />
+      <button onclick="searchProducts()">Search</button>
+    </div>
+
+    <!-- Product List -->
+    <div id="productList">
+      <h2>Products</h2>
+      <div id="products"></div>
+    </div>
+
+    <script>
+      // Initialize products array in localStorage if it doesn't exist
+      if (!localStorage.getItem("products")) {
+        localStorage.setItem("products", JSON.stringify([]));
+      }
+
+      // Create (Add) Product
+      function addProduct() {
+        const name = document.getElementById("productName").value;
+        const image = document.getElementById("productImage").value;
+        const price = document.getElementById("productPrice").value;
+        const description = document.getElementById("productDescription").value;
+
+        if (!name || !image || !price || !description) {
+          alert("Please fill in all fields");
+          return;
+        }
+
+        const product = {
+          id: Date.now().toString(),
+          name,
+          image,
+          price,
+          description,
+        };
+
+        const products = JSON.parse(localStorage.getItem("products"));
+        products.push(product);
+        localStorage.setItem("products", JSON.stringify(products));
+
+        // Clear form
+        document.getElementById("productName").value = "";
+        document.getElementById("productImage").value = "";
+        document.getElementById("productPrice").value = "";
+        document.getElementById("productDescription").value = "";
+
+        displayProducts();
+      }
+
+      // Read (View) All Products
+      function displayProducts(productsToShow = null) {
+        const productsDiv = document.getElementById("products");
+        const products =
+          productsToShow || JSON.parse(localStorage.getItem("products"));
+
+        productsDiv.innerHTML = "";
+
+        products.forEach((product) => {
+          const productCard = `
+                    <div class="product-card">
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                        <h3>${product.name}</h3>
+                        <p>Price: $${product.price}</p>
+                        <p>${product.description}</p>
+                        <button onclick="updateProduct('${product.id}')">Update</button>
+                        <button onclick="deleteProduct('${product.id}')" style="background-color: #f44336;">Delete</button>
+                    </div>
+                `;
+          productsDiv.innerHTML += productCard;
+        });
+      }
+
+      // Update Product
+      function updateProduct(id) {
+        const products = JSON.parse(localStorage.getItem("products"));
+        const product = products.find((p) => p.id === id);
+
+        if (product) {
+          const newName = prompt("Enter new name:", product.name);
+          const newImage = prompt("Enter new image URL:", product.image);
+          const newPrice = prompt("Enter new price:", product.price);
+          const newDescription = prompt(
+            "Enter new description:",
+            product.description
+          );
+
+          if (newName && newImage && newPrice && newDescription) {
+            product.name = newName;
+            product.image = newImage;
+            product.price = newPrice;
+            product.description = newDescription;
+
+            localStorage.setItem("products", JSON.stringify(products));
+            displayProducts();
+          }
+        }
+      }
+
+      // Delete Product
+      function deleteProduct(id) {
+        if (confirm("Are you sure you want to delete this product?")) {
+          const products = JSON.parse(localStorage.getItem("products"));
+          const updatedProducts = products.filter(
+            (product) => product.id !== id
+          );
+          localStorage.setItem("products", JSON.stringify(updatedProducts));
+          displayProducts();
+        }
+      }
+
+      // Search Products
+      function searchProducts() {
+        const searchTerm = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const products = JSON.parse(localStorage.getItem("products"));
+
+        const filteredProducts = products.filter((product) =>
+          product.name.toLowerCase().includes(searchTerm)
+        );
+
+        displayProducts(filteredProducts);
+      }
+
+      // Initial display of products
+      displayProducts();
+    </script>
+  </body>
+</html>
