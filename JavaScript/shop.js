@@ -1,7 +1,6 @@
 let currentPage = 1;
 const itemsPerPage = 9;
 
-
 function displayProducts(productsToShow = null) {
   const productsDiv = document.getElementById("products");
 
@@ -61,7 +60,9 @@ function displayProducts(productsToShow = null) {
                     <span class="current-price">$${product.price}</span>
                     <span class="original-price">${
                       product.discount
-                        ? `$${Math.round(product.price * (1 - product.discount / 100))}`
+                        ? `$${Math.round(
+                            product.price * (1 - product.discount / 100)
+                          )}`
                         : ""
                     }</span>
                     <span class=${product.discount ? "discount-badge" : ""}>${
@@ -85,3 +86,16 @@ function searchProducts() {
 }
 
 displayProducts();
+
+function showProductbyId() {
+  const productId = document.getElementById("dropdown-content");
+  const product = JSON.parse(localStorage.getItem("products"));
+
+  productId.innerHTML = ``;
+
+  product.forEach((product) => {
+    const productsId = `
+    <a href="../html/viewProduct.html?userId=${product.id}">${product.id}</a>`;
+    productId.innerHTML += productsId;
+  });
+}

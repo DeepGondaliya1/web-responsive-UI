@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../Css/styles.css" />
-    <link rel="stylesheet" href="../Css/shop.css" />
+    <link rel="stylesheet" href="../Css/viewProduct.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
     />
   </head>
   <body>
@@ -55,7 +62,7 @@
           </button>
 
           <!-- Logo -->
-          <a href="./index.html" class="logo">
+          <a href="#home-page" class="logo">
             <svg
               width="159"
               height="25"
@@ -75,7 +82,7 @@
             <ul class="nav-list font-style2">
               <li>
                 <button class="nav-link with-dropdown">
-                  Shop
+                  <a href="#browse-by-style" class="nav-link">Shop</a>
                   <svg
                     class="dropdown-icon"
                     width="12"
@@ -86,8 +93,8 @@
                   </svg>
                 </button>
               </li>
-              <li><a href="/sale" class="nav-link">On Sale</a></li>
-              <li><a href="/new" class="nav-link">New Arrivals</a></li>
+              <li><a href="#top-selling" class="nav-link">On Sale</a></li>
+              <li><a href="#new-arrivals" class="nav-link">New Arrivals</a></li>
               <li><a href="/brands" class="nav-link">Brands</a></li>
             </ul>
           </nav>
@@ -111,8 +118,6 @@
             <input
               type="search"
               class="search-input"
-              id="searchInput"
-              oninput="searchProducts()"
               placeholder="Search for products..."
             />
           </div>
@@ -171,240 +176,27 @@
     </section>
     <section class="width-class">
       <div class="container">
-        <div class="navigation-path">
+        <div class="view-product-path">
           <span
-            ><a
-              style="color: rgba(0, 0, 0, 0.6)"
-              class="nav-shop"
-              href="index.html"
-              >Home</a
-            >
+            ><a class="nav-shop gray-color" href="index.html">Home</a>
           </span>
           <span class="nav-svg"><img src="/image/svg/Frame.svg" /></span>
-          <span><a class="nav-shop" href="#">Casual</a></span>
+          <span><a class="nav-shop gray-color" href="#">Shop</a></span>
+          <span class="nav-svg"><img src="/image/svg/Frame.svg" /></span>
+          <span><a class="nav-shop gray-color" href="#">Men</a></span>
+          <span class="nav-svg"><img src="/image/svg/Frame.svg" /></span>
+          <span
+            ><a class="nav-shop gray-color" style="color: black" href="#"
+              >T-shirts</a
+            ></span
+          >
         </div>
-        <div class="main-section container-gap">
-          <div class="filter-main">
-            <div class="filter-container">
-              <div class="section-1 section">
-                <p class="title-size">Filters</p>
-                <img src="/image/svg/filter_slider.svg" />
-              </div>
-              <hr />
-              <div class="section-2">
-                <div class="section gray-color category-margin">
-                  <p>T-shirt</p>
-                  <img src="/image/svg/Frame.svg" />
-                </div>
-                <div class="section gray-color category-margin">
-                  <p>Shorts</p>
-                  <p>
-                    <img src="/image/svg/Frame.svg" />
-                  </p>
-                </div>
-
-                <div class="section gray-color category-margin">
-                  <p>Shirts</p>
-                  <img src="/image/svg/Frame.svg" />
-                </div>
-                <div class="section gray-color category-margin">
-                  <p>Hoodie</p>
-                  <img src="/image/svg/Frame.svg" />
-                </div>
-                <div class="section gray-color">
-                  <p>Jeans</p>
-                  <img src="/image/svg/Frame.svg" />
-                </div>
-              </div>
-              <hr />
-              <div class="section-3">
-                <div class="section price-margin">
-                  <p class="title-size">Price</p>
-                  <img src="/image/svg/top-arrow.svg" />
-                </div>
-                <div class="section">
-                  <div style="min-height: 43px">
-                    <div id="slider" class="mt-5">$50 | $200</div>
-                  </div>
-                </div>
-              </div>
-              <hr />
-              <div class="section-4">
-                <div class="section color-margin">
-                  <p class="title-size">Colors</p>
-                  <img src="/image/svg/top-arrow.svg" />
-                </div>
-                <div class="color-grid">
-                  <div
-                    class="color-round"
-                    style="
-                      background-color: rgba(0, 193, 43, 1);
-                      border: 1px solid rgb(32, 158, 0);
-                    "
-                  ></div>
-                  <div
-                    class="color-round"
-                    style="
-                      background-color: rgba(245, 6, 6, 1);
-                      border: 1px solid rgb(160, 2, 2);
-                    "
-                  ></div>
-                  <div
-                    class="color-round"
-                    style="
-                      background-color: rgba(245, 221, 6, 1);
-                      border: 1px solid rgb(216 195 0);
-                    "
-                  ></div>
-                  <div
-                    class="color-round"
-                    style="
-                      background-color: rgba(245, 121, 6, 1);
-                      border: 1px solid rgb(143, 69, 0);
-                    "
-                  ></div>
-                  <div
-                    class="color-round"
-                    style="
-                      background-color: rgba(6, 202, 245, 1);
-                      border: 1px solid rgb(0, 112, 138);
-                    "
-                  ></div>
-                  <div
-                    class="color-round"
-                    style="
-                      background-color: rgb(30, 6, 245, 1);
-                      border: 1px solid rgb(15, 0, 150);
-                    "
-                  ></div>
-                  <div
-                    class="color-round"
-                    style="
-                      background-color: rgba(125, 6, 245, 1);
-                      border: 1px solid rgb(71, 0, 141);
-                    "
-                  ></div>
-                  <div
-                    class="color-round"
-                    style="
-                      background-color: rgba(245, 6, 164, 1);
-                      border: 1px solid rgb(110, 0, 74);
-                    "
-                  ></div>
-                  <div
-                    class="color-round"
-                    style="
-                      background-color: rgba(255, 255, 255, 1);
-                      border: 1px solid rgb(179, 177, 177);
-                    "
-                  ></div>
-                  <div
-                    class="color-round"
-                    style="
-                      background-color: rgba(0, 0, 0, 1);
-                      border: 1px solid rgba(0, 0, 0, 1);
-                    "
-                  ></div>
-                </div>
-              </div>
-              <div class="section-5">
-                <div class="section size-margin">
-                  <p class="title-size">Size</p>
-                  <img src="/image/svg/top-arrow.svg" />
-                </div>
-                <div class="size-main gray-color">
-                  <button class="size-style" style="max-width: 96px">
-                    <p>XX-Small</p>
-                  </button>
-                  <button class="size-style" style="max-width: 88px">
-                    <p>X-Small</p>
-                  </button>
-                  <button class="size-style" style="max-width: 74px">
-                    <p>Small</p>
-                  </button>
-                  <button class="size-style" style="max-width: 90px">
-                    <p>Medium</p>
-                  </button>
-                  <button
-                    class="size-style"
-                    style="
-                      max-width: 76px;
-                      background-color: black;
-                      color: white;
-                    "
-                  >
-                    <p>Large</p>
-                  </button>
-                  <button class="size-style" style="max-width: 89px">
-                    <p>X-Large</p>
-                  </button>
-                  <button class="size-style" style="max-width: 98px">
-                    <p>XX-Large</p>
-                  </button>
-                  <button class="size-style" style="max-width: 97px">
-                    <p>3X-Large</p>
-                  </button>
-                  <button class="size-style" style="max-width: 98px">
-                    <p>4X-Large</p>
-                  </button>
-                </div>
-              </div>
-              <div class="section-6">
-                <div class="section dress-margin">
-                  <p class="title-size">Dress Style</p>
-                  <img src="/image/svg/Frame.svg" />
-                </div>
-                <div class="section subtitle-size dress-margin gray-color">
-                  <p>Casual</p>
-                  <img src="/image/svg/Frame.svg" />
-                </div>
-                <div class="section subtitle-size dress-margin gray-color">
-                  <p>Formal</p>
-                  <img src="/image/svg/Frame.svg" />
-                </div>
-                <div class="section subtitle-size dress-margin gray-color">
-                  <p>Party</p>
-                  <img src="/image/svg/Frame.svg" />
-                </div>
-                <div class="section subtitle-size gray-color">
-                  <p>Gym</p>
-                  <img src="/image/svg/Frame.svg" />
-                </div>
-              </div>
-              <div class="section-7">
-                <div class="section">
-                  <button style="min-height: 48px" class="button-filter">
-                    Apply Filter
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="product-main">
-            <div class="product-header product-margin">
-              <div class="big-title-size"><p>Casual</p></div>
-              <div class="gray-color dropdown-flex">
-                Showing 1-10 of 100 Products Sort by:
-                <div class="dropdown-style">
-                  <button onclick="showProductbyId()" class="id-button-style">
-                    <strong style="color: black">Most Popular</strong>
-                    <i class="fa fa-caret-down"></i>
-                  </button>
-                  <div class="dropdown-content" id="dropdown-content">
-                    <!-- <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="products-grid-1" id="products"></div>
-            <hr />
-            <div>
-              <ul class="pagination" id="pagination"></ul>
-            </div>
-          </div>
-        </div>
+        <div class="view-product-main" id="view-product-main"></div>
+      </div>
+    </section>
+    <section class="width-class">
+      <div class="container">
+        <div class="empty"></div>
       </div>
     </section>
     <section class="width-class bg-color3">
@@ -1086,6 +878,6 @@
         </div>
       </div>
     </section>
-    <script src="../JavaScript/shop.js"></script>
+    <script src="../JavaScript/viewProduct.js"></script>
   </body>
 </html>

@@ -133,6 +133,9 @@ function displayProducts() {
                     <button class="update-style" onclick="updateProduct('${
                       product.id
                     }')">Update</button>
+                    <button class="view-style view-link" onclick="viewProduct('${
+                      product.id
+                    }')">View</button>
                     <button class="delete-style" onclick="deleteProduct('${
                       product.id
                     }')">Delete</button>
@@ -151,14 +154,14 @@ function updateProduct(id) {
   const product = products.find((i) => i.id === id);
 
   if (product) {
-    addButton.style.display = "none";
-    productForm.style.display = "block";
-
     const newName = prompt("Enter new name:", product.name);
     const newImage = prompt("Enter new image URL:", product.image);
     const newPrice = prompt("Enter new price:", product.price);
     const newDiscount = prompt("Enter new Discount", product.discount);
-    const newDescription = prompt("Enter new description:",product.description);
+    const newDescription = prompt(
+      "Enter new description:",
+      product.description
+    );
 
     if (newName && newImage && newPrice && newDescription) {
       product.name = newName;
@@ -180,4 +183,8 @@ function deleteProduct(id) {
     localStorage.setItem("products", JSON.stringify(newProducts));
     displayProducts();
   }
+}
+
+function viewProduct(id) {
+  window.location.href = `../html/viewProduct.html?userId=${id}`;
 }

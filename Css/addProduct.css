@@ -117,7 +117,7 @@
 }
 
 .update-style {
-  background-color: rgb(136, 224, 136);
+  background-color: rgb(60, 151, 211);
   color: black;
   border: none;
   padding: 10px 20px;
@@ -125,8 +125,22 @@
   cursor: pointer;
 }
 
+.view-style {
+  background-color: rgb(96, 223, 96);
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.view-link {
+  text-decoration: none;
+  color: black;
+}
+
 .delete-style {
-  background-color: #db7c6b;
+  background-color: #d46551;
   color: black;
   border: none;
   padding: 10px 20px;
