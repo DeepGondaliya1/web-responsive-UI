@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../Css/addProduct.css" />
+    <link rel="stylesheet" href="../Css/styles.css" />
+  </head>
+  <body>
+    <section>
+      <div class="Product-main">
+        <div class="main-header">Product Management System</div>
+        <button class="buttton-style" id="addProduct">Add New Product</button>
+        <div class="main-container" id="addProductForm" style="display: none">
+          <form>
+            <div class="form-field">
+              <label class="labels" for="productName">Product Name:</label>
+              <input
+                class="field-stlye"
+                type="text"
+                id="productName"
+                required
+                placeholder="add product name.."
+              />
+            </div>
+            <div class="form-field">
+              <label class="labels" for="productImage">Product Image:</label>
+              <input
+                class="field-stlye"
+                type="text"
+                id="productImage"
+                required
+                placeholder="add product image url.."
+              />
+            </div>
+            <div class="form-field">
+              <label class="labels" for="productPrice">Price:</label>
+              <input
+                class="field-stlye"
+                type="number"
+                id="productPrice"
+                required
+                placeholder="add product price.."
+              />
+            </div>
+            <div class="form-field">
+              <label class="labels" for="productPrice">Discount:</label>
+              <input
+                class="field-stlye"
+                type="number"
+                id="productDiscount"
+                placeholder="add product Discount.."
+              />
+            </div>
+            <div class="form-field">
+              <label class="labels" for="productDescription"
+                >Description:</label
+              >
+              <textarea
+                class="field-stlye"
+                id="productDescription"
+                required
+              ></textarea>
+            </div>
+            <div id="btn-container">
+              <button
+                onclick="addNewProduct()"
+                class="buttton-style btn-style"
+                id="submitProduct"
+              >
+                Submit
+              </button>
+              <button class="buttton-style btn-style" id="cancelProduct">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="show-products" id="productList">
+          <p class="product-title">Products</p>
+          <div class="product-show-style" id="products"></div>
+        </div>
+      </div>
+    </section>
+    <script src="../JavaScript/addProduct.js"></script>
+  </body>
+</html>

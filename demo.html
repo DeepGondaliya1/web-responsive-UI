@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD with Pagination</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .product-list {
+            margin-top: 20px;
+        }
+        .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            gap: 5px;
+        }
+        .pagination li {
+            display: inline;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .pagination .active {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        .pagination button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Product Management</h2>
+    <input type="text" id="productInput" placeholder="Enter product name">
+    <button onclick="addProduct()">Add Product</button>
+    
+    <div class="product-list" id="productList"></div>
+    
+    <ul class="pagination" id="pagination"></ul>
+    
+    <script>
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+        let currentPage = 1;
+        const itemsPerPage = 5;
+
+        function addProduct() {
+            const productInput = document.getElementById("productInput");
+            if (productInput.value.trim() !== "") {
+                products.push(productInput.value);
+                localStorage.setItem("products", JSON.stringify(products));
+                productInput.value = "";
+                displayProducts();
+            }
+        }
+
+        function deleteProduct(index) {
+            products.splice(index, 1);
+            localStorage.setItem("products", JSON.stringify(products));
+            displayProducts();
+        }
+
+        function displayProducts() {
+            const productList = document.getElementById("productList");
+            productList.innerHTML = "";
+            
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const paginatedProducts = products.slice(start, end);
+            
+            paginatedProducts.forEach((product, index) => {
+                productList.innerHTML += `<div>${product} <button onclick="deleteProduct(${start + index})">Delete</button></div>`;
+            });
+            updatePagination();
+        }
+
+        function updatePagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+            const totalPages = Math.ceil(products.length / itemsPerPage);
+            
+            if (totalPages > 1) {
+                pagination.innerHTML += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>← Previous</button>`;
+                
+                for (let i = 1; i <= totalPages; i++) {
+                    pagination.innerHTML += `<li class="${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</li>`;
+                }
+                
+                pagination.innerHTML += `<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>`;
+            }
+        }
+
+        function changePage(page) {
+            const totalPages = Math.ceil(products.length / itemsPerPage);
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                displayProducts();
+            }
+        }
+
+        displayProducts();
+    </script>
+</body>
+</html>
